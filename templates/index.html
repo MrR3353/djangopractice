@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %} Index title {% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+    <img src="{% static 'img/1.png' %}" height="300" alt="Image">
+
+    {% if order_list %}
+    <h1>{{order_list}}</h1>
+
+    <ul>
+        {% for order in order_list %}
+        <li>
+            {{order.id}}
+            {{order.order_name}}
+            {{order.order_dt}}
+            {{order.order_phone}}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Phone</th>
+        </tr>
+        {% for order in order_list %}
+            <tr>
+                <th>{{order.id}}</th>
+                <th>{{order.order_name}}</th>
+                <th>{{order.order_dt}}</th>
+                <th>{{order.order_phone}}</th>
+            </tr>
+        {% endfor %}
+    {% else %}
+        Данных нет
+    {% endif %}
+    </table>
+
+
+    <form action="{% url 'thanks_page' %}" method="POST">
+         {% csrf_token %}
+    <!--     <label>Name</label>-->
+    <!--     <input type="text" name="name">-->
+    <!--     <label>Phone</label>-->
+    <!--     <input type="text" name="phone">-->
+         {{ form.as_p }}
+         <button type="submit">Send</button>
+    </form>
+
+
+
+{% include 'loaded_time.html' %}
+
+{% endblock %}
