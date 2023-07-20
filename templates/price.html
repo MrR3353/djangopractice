@@ -1,0 +1,47 @@
+  	<section>
+  		<div class="container">
+  			<h1 class="text-3">ПАКЕТЫ УСЛУГ</h1>
+  			<div class="row justify-content-center">
+				{% for pc in price_cards %}
+					<div class="card product_card" style="width: 18rem; background-color:
+					{% if pc.id == 1 %}
+					 #cd7f32;">
+					{% elif pc.id == 2 %}
+					 #c0c0c0;">
+					{% elif pc.id == 3 %}
+					 #ffd700;">
+					{% endif %}
+					  <div class="card-body">
+						<h5 class="card-title">{{pc.pc_desc }}</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<h3>{{ pc.pc_value }}</h3>
+					  </div>
+					</div>
+				{% endfor %}
+  			</div>
+  		</div>
+  	</section>
+  	<!-- Таблица -->
+  	<section>
+  		<div class="container">
+  			<h1 class="text-3">Цены на услуги</h1>
+  			<table class="table table_one">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">Услуга</th>
+			      <th scope="col">Старая цена</th>
+			      <th scope="col">Новая цена</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  {% for pt in price_tables %}
+			    <tr>
+			      <td>{{ pt.pt_title }}</td>
+			      <td><del>{{ pt.pt_old_price }}</del></td>
+			      <td>{{ pt.pt_new_price }}</td>
+			    </tr>
+			  {% endfor %}
+			  </tbody>
+			</table>
+  		</div>
+  	</section>
