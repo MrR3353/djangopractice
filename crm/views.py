@@ -3,6 +3,7 @@ from .models import Order
 from .forms import OrderForm
 from cms.models import CmsSlider
 from price.models import PriceCard, PriceTable
+from telebot.sendmessages import send_message
 
 # Create your views here.
 def first_page(request):
@@ -20,4 +21,10 @@ def thanks_page(request):
     phone = request.POST['phone']
     order = Order(order_name=name, order_phone=phone)
     order.save()
+#     send_message(f'''Новая заявка:
+# Имя: {name}
+# Телефон: {phone}
+#     ''')
+    send_message(name, phone)
     return render(request, './thanks.html', {'name': name, 'phone': phone})
+

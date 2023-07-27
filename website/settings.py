@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'price.apps.PriceConfig',
     'cms.apps.CmsConfig',
     'crm.apps.CrmConfig',
+    'telebot.apps.TelebotConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
