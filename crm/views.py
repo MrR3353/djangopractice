@@ -5,7 +5,7 @@ from cms.models import CmsSlider
 from price.models import PriceCard, PriceTable
 from telebot.sendmessages import send_message
 
-# Create your views here.
+
 def first_page(request):
     slider_list = CmsSlider.objects.all()
     price_cards = PriceCard.objects.all()[:3]
@@ -16,15 +16,14 @@ def first_page(request):
                                             'price_tables': price_tables,
                                             'form': form})
 
+
 def thanks_page(request):
-    name = request.POST['name']
-    phone = request.POST['phone']
-    order = Order(order_name=name, order_phone=phone)
-    order.save()
-#     send_message(f'''Новая заявка:
-# Имя: {name}
-# Телефон: {phone}
-#     ''')
-    send_message(name, phone)
-    return render(request, './thanks.html', {'name': name, 'phone': phone})
+    if request.POST:
+        name = request.POST['name']
+        phone = request.POST['phone']
+        order = Order(order_name=name, order_phone=phone)
+        order.save()
+        send_message(name, phone)
+        return render(request, './thanks.html', {'name': name, 'phone': phone})
+    return render(request, './thanks.html')
 
